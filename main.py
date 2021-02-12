@@ -11,10 +11,23 @@ $​ park KA-01-HH-3141 Black Allocated slot number: 6
 $​ leave 4
 Slot number 4 is free
 '''
+class Parking():
+    def __init__(self,size,slot):
+        self.size = size
+        self.slot = slot
 
-def leave():
-    pass
+    def create_parking_lot(self):
+        lot_size = []
+        final_lot_size = [None for x in range(self.size)]
+        return 'Created a parking lot with {} slots'.format(len(self.size))
+    
 
 
-def park():
-    pass
+
+class Cars():
+    def __init__(self,registration_number,color):
+        self.registration_number = registration_number
+        self.color = color
+if __name__ == "__main__":
+    main()
+    
