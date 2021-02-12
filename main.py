@@ -11,23 +11,40 @@ $​ park KA-01-HH-3141 Black Allocated slot number: 6
 $​ leave 4
 Slot number 4 is free
 '''
-class Parking():
-    def __init__(self,size,slot):
-        self.size = size
-        self.slot = slot
-
-    def create_parking_lot(self):
-        lot_size = []
-        final_lot_size = [None for x in range(self.size)]
-        return 'Created a parking lot with {} slots'.format(len(self.size))
-    
-
-
 
 class Cars():
     def __init__(self,registration_number,color):
         self.registration_number = registration_number
         self.color = color
+
+class Parking():
+    def __init__(self,size,slot):
+        self.size = size
+        self.slot = slot
+        self.final_lot_size = {}
+
+    def create_parking_lot(self):
+        self.final_lot_size = dict()
+        for i in range(self.size):
+            final_lot_size[i] = None
+        return 'Created a parking lot with {} slots'.format(self.size)
+
+    def park(self,registration_number,color):
+        car_info = Cars(registration_number,color)
+        car_details = '{}{}'.format(car_info.registration_number , car_info.color)
+        # self.car_info = '{} {}'.format(registration_number,color)
+        for car_data in len(self.final_lot_size):
+            if not self.final_lot_size[car_data]:
+                self.final_lot_size[car_data] = self.car_info
+                return 'Allocated slot number: {}'.format(car_data)
+            else:
+                return 'Sorry, parking lot is full'
+
+def main():
+    a = Parking(5,None)
+    a = a.create_parking_lot()
+    print(a)
+
 if __name__ == "__main__":
     main()
     
