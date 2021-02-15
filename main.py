@@ -18,9 +18,8 @@ class Cars():
         self.color = color
 
 class Parking():
-    def __init__(self,size,slot):
+    def __init__(self,size):
         self.size = size
-        self.slot = slot
         self.final_lot_size = {}
 
     def create_parking_lot(self):
@@ -31,17 +30,17 @@ class Parking():
 
     def park(self,registration_number,color):
         car_info = Cars(registration_number,color)
-        car_details = '{}{}'.format(car_info.registration_number , car_info.color)
+        car_details = '{} {}'.format(car_info.registration_number , car_info.color)
         # self.car_info = '{} {}'.format(registration_number,color)
         for car_data in self.final_lot_size:
             if not self.final_lot_size[car_data]:
                 self.final_lot_size[car_data] = car_details
                 return 'Allocated slot number: {}'.format(car_data)
-            else:
-                return 'Sorry, parking lot is full'
+        return 'Sorry, parking lot is full'
+                
 
 def main():
-    a = Parking(5,None)
+    a = Parking(5)
     b = a.create_parking_lot()
     c = a.park('mh12' , 'cars')
     d = c = a.park('mh122' , 'cars')
