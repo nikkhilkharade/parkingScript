@@ -51,6 +51,7 @@ class Parking():
                 car_color = car_info.split(" ")[1]
                 car_lot_number = self.final_lot_size.index(car_info)
                 status = '%-12r%-12r%-12r' % (car_lot_number , car_registration_number , car_color)
+                #above snippet reference from https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
                 entire_status.append(status)
         return entire_status
                 
