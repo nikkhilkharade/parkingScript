@@ -44,7 +44,16 @@ class Parking():
         return "Slot {} is already free".format(lot_number)
     
     def status(self):
-        pass
+        entire_status = []
+        for car_info in self.final_lot_size:
+            if car_info:
+                car_registration_number = car_info.split(" ")[0]
+                car_color = car_info.split(" ")[1]
+                car_lot_number = self.final_lot_size.index(car_info)
+                status = '%-12r%-12r%-12r' % (car_lot_number , car_registration_number , car_color)
+                entire_status.append(status)
+        return entire_status
+                
                 
 
 def main():
@@ -52,6 +61,7 @@ def main():
     b = a.create_parking_lot()
     c = a.park('mh12' , 'cars')
     d = a.park('mh122' , 'cars')
+    z = a.status()
     e = a.leave(1)
     f = a.leave(4)
     print(c)
