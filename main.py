@@ -20,31 +20,42 @@ class Cars():
 class Parking():
     def __init__(self,size):
         self.size = size
-        self.final_lot_size = {}
+        self.final_lot_size = []
 
     def create_parking_lot(self):
-        self.final_lot_size = dict()
-        for i in range(self.size):
-            self.final_lot_size[i] = None
+        self.final_lot_size = [None] * self.size
         return 'Created a parking lot with {} slots'.format(self.size)
 
     def park(self,registration_number,color):
         car_info = Cars(registration_number,color)
-        car_details = '{} {}'.format(car_info.registration_number , car_info.color)
+        car_details = '{} {}'.format(car_info.registration_number.lower() , car_info.color.lower())
         # self.car_info = '{} {}'.format(registration_number,color)
         for car_data in self.final_lot_size:
-            if not self.final_lot_size[car_data]:
-                self.final_lot_size[car_data] = car_details
-                return 'Allocated slot number: {}'.format(car_data)
+            if not car_data:
+                lot_number = self.final_lot_size.index(car_data)
+                self.final_lot_size[lot_number] = car_details
+                return 'Allocated slot number: {}'.format(lot_number)
         return 'Sorry, parking lot is full'
+    
+    def leave(self,lot_number):
+        if self.final_lot_size[lot_number]:
+            self.final_lot_size[lot_number] = None
+            return "Slot {} is free".format(lot_number)
+        return "Slot {} is already free".format(lot_number)
+    
+    def status(self):
+        pass
                 
 
 def main():
     a = Parking(5)
     b = a.create_parking_lot()
     c = a.park('mh12' , 'cars')
-    d = c = a.park('mh122' , 'cars')
+    d = a.park('mh122' , 'cars')
+    e = a.leave(1)
+    f = a.leave(4)
     print(c)
+    print(d)
 
 if __name__ == "__main__":
     main()
