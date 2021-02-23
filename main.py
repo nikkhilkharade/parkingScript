@@ -28,7 +28,8 @@ class Parking():
 
     def park(self,registration_number,color):
         car_info = Cars(registration_number,color)
-        car_details = '{} {}'.format(car_info.registration_number.lower() , car_info.color.lower())
+        #car_details = '{} {}'.format(car_info.registration_number.lower() , car_info.color.lower())
+        car_details = {'registrationNumber' : car_info.registration_number.lower() , 'color' : car_info.color.lower()}
         # self.car_info = '{} {}'.format(registration_number,color)
         for car_data in self.final_lot_size:
             if not car_data:
@@ -47,8 +48,8 @@ class Parking():
         entire_status = []
         for car_info in self.final_lot_size:
             if car_info:
-                car_registration_number = car_info.split(" ")[0]
-                car_color = car_info.split(" ")[1]
+                car_registration_number = car_info.get('registrationNumber')
+                car_color = car_info.get('color')
                 car_lot_number = self.final_lot_size.index(car_info)
                 status = '%-12r%-12r%-12r' % (car_lot_number , car_registration_number , car_color)
                 #above snippet reference from https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
