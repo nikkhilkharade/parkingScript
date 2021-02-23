@@ -28,9 +28,7 @@ class Parking():
 
     def park(self,registration_number,color):
         car_info = Cars(registration_number,color)
-        #car_details = '{} {}'.format(car_info.registration_number.lower() , car_info.color.lower())
         car_details = {'registrationNumber' : car_info.registration_number.lower() , 'color' : car_info.color.lower()}
-        # self.car_info = '{} {}'.format(registration_number,color)
         for car_data in self.final_lot_size:
             if not car_data:
                 lot_number = self.final_lot_size.index(car_data)
@@ -55,14 +53,30 @@ class Parking():
                 #above snippet reference from https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
                 entire_status.append(status)
         return entire_status
-                
-                
+
+    def registration_numbers_for_cars_with_colour(self,car_color):
+        matching_values = []
+        for car_info in range(len(self.final_lot_size)):
+            if self.final_lot_size[car_info] and self.final_lot_size[car_info].get('color') == car_color:
+                registration_numbers = self.final_lot_size[car_info].get('registrationNumber')
+                matching_values.append(registration_numbers)
+        return matching_values
+
+    def slot_numbers_for_cars_with_colour(self,car_color):
+        matching_values = []
+        for car_info in range(len(self.final_lot_size)):
+            if self.final_lot_size[car_info] and self.final_lot_size[car_info].get('color') == car_color:
+                lot_numbers = self.final_lot_size.index(self.final_lot_size[car_info])
+                matching_values.append(lot_numbers)
+        return matching_values
+
 
 def main():
     a = Parking(5)
     b = a.create_parking_lot()
     c = a.park('mh12' , 'cars')
     d = a.park('mh122' , 'cars')
+    zz = a.slot_numbers_for_cars_with_colour('cars')
     z = a.status()
     e = a.leave(1)
     f = a.leave(4)
